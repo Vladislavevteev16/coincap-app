@@ -1,5 +1,5 @@
 import "normalize.css";
-import "./App.css";
+import "@/app/styles/global.css";
 
 function App() {
   return <></>;
