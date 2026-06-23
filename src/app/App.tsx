@@ -1,12 +1,12 @@
-import { Header } from "@/widgets/Header";
-
 import "normalize.css";
 import "@/app/styles/global.css";
+
+import { AppRouter } from "./router";
 
 function App() {
   return (
     <>
-      <Header />
+      <AppRouter />
     </>
   );
 }
