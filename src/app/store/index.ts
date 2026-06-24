@@ -1,12 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
+
 import {
   useDispatch,
   useSelector,
   type TypedUseSelectorHook,
 } from "react-redux";
 
+import portfolioReducer from "@/entities/portfolio/model/portfolio.slice";
+
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    portfolio: portfolioReducer,
+  },
 });
 
 export default store;
