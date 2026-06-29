@@ -2,7 +2,11 @@ import { CryptoRate } from "./CryptoRate";
 
 import { useTopAssets } from "../model/useTopAssets";
 
-import s from "./TopCryptos.module.css";
+import {
+  PopularCoinsWrapper,
+  PopularCoinsHeader,
+  CoinList,
+} from "./TopCryptos.style";
 
 export const TopCryptos: React.FC = () => {
   const { data, isLoading, isError } = useTopAssets();
@@ -16,11 +20,11 @@ export const TopCryptos: React.FC = () => {
   }
 
   return (
-    <div className={s.popularCoinsWrapper}>
-      <h2 className={s.popularCoinsHeader}>Популярные криптовалюты:</h2>
-      <ul className={s.coinList}>
+    <PopularCoinsWrapper>
+      <PopularCoinsHeader>Популярные криптовалюты:</PopularCoinsHeader>
+      <CoinList>
         {data && data.map((item) => <CryptoRate key={item.id} {...item} />)}
-      </ul>
-    </div>
+      </CoinList>
+    </PopularCoinsWrapper>
   );
 };

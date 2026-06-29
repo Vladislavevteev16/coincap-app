@@ -2,7 +2,6 @@ import type { ColumnsType } from "antd/es/table";
 import { PlusOutlined } from "@ant-design/icons";
 import type { Asset } from "@/shared/api/coincap.types";
 
-
 import styled from "@emotion/styled";
 
 const StyledPlusIcon = styled(PlusOutlined)`
@@ -21,7 +20,7 @@ const StyledPlusIcon = styled(PlusOutlined)`
 
 export const columns = (
   offset: number = 0,
-  handleOpenModal?: () => void,
+  handleOpenModal?: (asset: Asset) => void,
 ): ColumnsType<Asset> => [
   {
     title: "№",
@@ -65,13 +64,13 @@ export const columns = (
   {
     title: "",
     width: 30,
-    className: "cancelHover", 
-    render: () => (
+    className: "cancelHover",
+    render: (_, asset: Asset) => (
       <StyledPlusIcon
         onClick={(e) => {
-          e.stopPropagation(); 
+          e.stopPropagation();
           if (handleOpenModal) {
-            handleOpenModal();
+            handleOpenModal(asset);
           }
         }}
       />

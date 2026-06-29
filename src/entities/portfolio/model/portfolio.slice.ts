@@ -16,13 +16,17 @@ export const porfolioSlice = createSlice({
     addAsset: (state, action: PayloadAction<Asset>) => {
       state.items.push(action.payload);
     },
+    setSelectedAsset: (state, action: PayloadAction<Asset>) => {
+      state.selectedAsset = action.payload;
+    },
   },
   selectors: {
     selectAssetList: (state) => state.items,
+    selectCurrentAsset: (state) => state.selectedAsset,
   },
 });
 
-export const { addAsset } = porfolioSlice.actions;
-export const { selectAssetList } = porfolioSlice.selectors;
+export const { addAsset, setSelectedAsset } = porfolioSlice.actions;
+export const { selectAssetList, selectCurrentAsset } = porfolioSlice.selectors;
 
 export default porfolioSlice.reducer;

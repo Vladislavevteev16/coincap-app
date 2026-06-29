@@ -1,40 +1,32 @@
-import { Table } from "antd";
-import { useState } from "react";
-import { AddToPortfolioModel } from "./AddToPortfolioModel";
+import { Typography } from "antd";
+
+import { AddToPortfolioModal } from "./AddToPortfolioModal";
 import { useNavigate } from "react-router-dom";
-import { useCryptoTable } from "../model/useCryptoTable";
+
 import { columns } from "../model/columns";
-import styled from "@emotion/styled";
-import type { Asset } from "@/shared/api/coincap.types";
+
+import * as Styled from "./CryptoTable.style";
+
+import { useCryptoTableLogic } from "../lib/hooks/useCryptoTableLogic";
+
+const { Title, Text } = Typography;
 
 const PAGE_SIZE = 10;
 
-const StyledTable = styled(Table<Asset>)`
-  .ant-pagination {
-    display: flex;
-    justify-content: center;
-  }
-
-  .ant-table-cell.cancelHover {
-    &.ant-table-cell-row-hover {
-      background-color: transparent !important;
-    }
-  }
-`;
-
 export const CryptoTable: React.FC = () => {
   const navigate = useNavigate();
-  
-  const [page, setPage] = useState<number>(1);
-  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
-  const handleOpenModal = (): void => setIsOpenModal(true);
-
-  const handleCloseModal = (): void => setIsOpenModal(false);
-
-  const { data, isLoading, isError } = useCryptoTable(page);
-
-  const offset = (page - 1) * PAGE_SIZE;
+  const {
+    data,
+    handleCloseModal,
+    handleOpenModal,
+    isError,
+    isLoading,
+    isOpenModal,
+    offset,
+    page,
+    setPage,
+  } = useCryptoTableLogic();
 
   const columnsWithOffset = columns(offset, handleOpenModal);
 
@@ -43,28 +35,38 @@ export const CryptoTable: React.FC = () => {
   }
 
   return (
-    <>
-      <StyledTable
-        rowKey="id"
-        dataSource={data}
-        loading={isLoading}
-        size="small"
-        columns={columnsWithOffset}
-        bordered
-        pagination={{
-          current: page,
-          pageSize: PAGE_SIZE,
-          showSizeChanger: false,
-          onChange: setPage,
-        }}
-        onRow={(el) => ({
-          onClick: () => navigate(`/assets/${el.id}`),
-        })}
-      />
-      <AddToPortfolioModel
+    <Styled.TableWrapper>
+      <Styled.TableContainer>
+        <Styled.TableHeader>
+          <div>
+            <Title level={1} className="title">
+              Cryptocurrencies
+            </Title>
+            <Text className="subtitle">Real-time prices and market data</Text>
+          </div>
+        </Styled.TableHeader>
+        <Styled.StyledTable
+          rowKey="id"
+          dataSource={data}
+          loading={isLoading}
+          size="small"
+          columns={columnsWithOffset}
+          bordered={false}
+          pagination={{
+            current: page,
+            pageSize: PAGE_SIZE,
+            showSizeChanger: false,
+            onChange: setPage,
+          }}
+          onRow={(el) => ({
+            onClick: () => navigate(`/assets/${el.id}`),
+          })}
+        />
+      </Styled.TableContainer>{" "}
+      <AddToPortfolioModal
         handleCloseModal={handleCloseModal}
         isOpen={isOpenModal}
       />
-    </>
+    </Styled.TableWrapper>
   );
 };
