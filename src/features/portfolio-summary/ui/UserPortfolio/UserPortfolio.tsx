@@ -1,14 +1,22 @@
 import { PortfolioIcon } from "../PorfolioIcon";
 
-import { PortfolioTotalPrice } from "../PortfolioTotalPrice/PortfolioTotalPrice";
-
-import s from "./UserPortfolio.module.css";
+import * as Styled from "./UserPortfolio.style";
 
 export const UserPortfolio = () => {
   return (
-    <div className={s.userPorfolioContainer}>
-      <PortfolioIcon />
-      <PortfolioTotalPrice price={5} />
-    </div>
+    <Styled.UserPortfolioContainer>
+      <Styled.PortfolioIconWrapper>
+        <PortfolioIcon />
+      </Styled.PortfolioIconWrapper>
+      <Styled.PortfolioInfo>
+        <Styled.PortfolioLabel>Portfolio</Styled.PortfolioLabel>
+        <Styled.PortfolioPrice>
+          $12,456.78
+          <Styled.PortfolioPriceUsd>USD</Styled.PortfolioPriceUsd>
+          <Styled.ChangePercent isPositive={true}>+2.4%</Styled.ChangePercent>
+        </Styled.PortfolioPrice>
+      </Styled.PortfolioInfo>
+      <Styled.PortfolioBadge>3</Styled.PortfolioBadge>
+    </Styled.UserPortfolioContainer>
   );
 };

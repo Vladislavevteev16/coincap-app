@@ -1,7 +1,11 @@
+import styled from "@emotion/styled";
+
 import icon from "./assets/portfolio-icon.svg";
 
-import s from "./PortfolioIcon.module.css";
+const StyledImg = styled.img`
+  width: 3rem;
+`;
 
 export const PortfolioIcon = () => {
-  return <img className={s.icon} src={icon} alt="porfolio" />;
+  return <StyledImg src={icon} alt="porfolio" />;
 };

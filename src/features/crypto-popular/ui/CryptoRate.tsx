@@ -1,13 +1,17 @@
 import type { Asset } from "@/shared/api/coincap.types";
+import { CoinItem, CoinName, CoinPrice } from "./CryptoRate.style";
 
-import s from "./CryptoRate.module.css";
-
-export const CryptoRate: React.FC<Asset> = ({ priceUsd, symbol }) => {
+export const CryptoRate: React.FC<Asset & { isLoading?: boolean }> = ({
+  priceUsd,
+  symbol,
+  isLoading,
+}) => {
+  const isNegative = parseFloat(priceUsd) < 0;
 
   return (
-    <li className={s.coinItem}>
-      <span className={s.coinName}>{symbol}</span>
-      <span className={s.coinPrice}>{priceUsd}$</span>
-    </li>
+    <CoinItem isLoading={isLoading}>
+      <CoinName>{symbol}</CoinName>
+      <CoinPrice isNegative={isNegative}>{priceUsd}$</CoinPrice>
+    </CoinItem>
   );
 };
