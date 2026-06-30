@@ -1,6 +1,6 @@
-import { CryptoRate } from "./CryptoRate";
+import { CryptoRate } from "../CryptoRate";
 
-import { useTopAssets } from "../model/useTopAssets";
+import { useTopAssets } from "../../model/useTopAssets";
 
 import {
   PopularCoinsWrapper,

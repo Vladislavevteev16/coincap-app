@@ -1,4 +1,5 @@
 import type { Asset } from "@/shared/api/coincap.types";
+
 import { CoinItem, CoinName, CoinPrice } from "./CryptoRate.style";
 
 export const CryptoRate: React.FC<Asset & { isLoading?: boolean }> = ({

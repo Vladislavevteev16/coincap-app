@@ -1,6 +1,9 @@
 import { CloseOutlined } from "@ant-design/icons";
+
 import styled from "@emotion/styled";
+
 import { InputNumber, Button, Typography } from "antd";
+
 const { Title, Text } = Typography;
 
 export const PortfolioModalContainer = styled.div`

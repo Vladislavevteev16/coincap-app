@@ -254,9 +254,9 @@ export const TableWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   padding: 16px;
-  background: #f8f9fc;
-  min-height: 100vh;
+  background: #e4e5ea;
   width: 100%;
+  border-radius: 20px;
 
   @media (max-width: 768px) {
     padding: 8px;
@@ -265,7 +265,7 @@ export const TableWrapper = styled.div`
 
 export const TableContainer = styled.div`
   width: 100%;
-  max-width: 1200px; // Ограничиваем максимальную ширину
+  max-width: 1200px;
   margin: 0 auto;
 
   @media (max-width: 768px) {

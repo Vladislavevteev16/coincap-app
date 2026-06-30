@@ -6,7 +6,7 @@ const { Title } = Typography;
 
 export const PopularCoinsWrapper = styled.div`
   width: 100%;
-  max-width: 450px;
+  max-width: 500px;
   height: auto;
   min-height: 80px;
   display: flex;

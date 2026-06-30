@@ -1,1 +1,1 @@
-export { CryptoTable } from "./ui/CryptoTable";
+export { CryptoTable } from "./ui/CryptoTable/CryptoTable";

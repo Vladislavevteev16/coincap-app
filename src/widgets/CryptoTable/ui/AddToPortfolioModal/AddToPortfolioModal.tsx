@@ -1,10 +1,14 @@
 import { ModalPortal } from "@/shared/api/ui/modal-portal";
 
-import { formatPrice } from "../lib/utils/formatPrice";
+import { formatPrice } from "../../lib/utils/formatPrice";
 
-import { useAssetQuantity } from "../lib/hooks/useAssetQuantity";
+import { useAssetQuantity } from "../../lib/hooks/useAssetQuantity";
 
 import * as Styled from "./AddToPortfolioModal.style";
+
+import { useAppDispatch } from "@/app/store";
+
+import { addAsset } from "@/entities/portfolio/model/portfolio.slice";
 
 type AddToPortfolioModel = {
   isOpen: boolean;
@@ -15,9 +19,22 @@ export const AddToPortfolioModal: React.FC<AddToPortfolioModel> = ({
   isOpen,
   handleCloseModal,
 }) => {
+  const dispatch = useAppDispatch();
+
   const { currentAsset, quantity, totalPrice, handleChangeTotalPrice } =
     useAssetQuantity();
 
+  const handleAddAssetInPortfolio = () => {
+    dispatch(
+      addAsset({
+        id: currentAsset?.id as string,
+        name: currentAsset?.name as string,
+        priceUsd: currentAsset?.priceUsd as string,
+        qty: quantity,
+      }),
+      handleCloseModal(),
+    );
+  };
   return (
     <ModalPortal handleCloseModal={handleCloseModal} isOpen={isOpen}>
       <Styled.PortfolioModalContainer>
@@ -72,7 +89,9 @@ export const AddToPortfolioModal: React.FC<AddToPortfolioModel> = ({
           <Styled.CancelButton onClick={handleCloseModal}>
             Отмена
           </Styled.CancelButton>
-          <Styled.AddButton>Добавить</Styled.AddButton>
+          <Styled.AddButton onClick={handleAddAssetInPortfolio}>
+            Добавить
+          </Styled.AddButton>
         </Styled.ButtonContainer>
       </Styled.PortfolioModalContainer>
     </ModalPortal>

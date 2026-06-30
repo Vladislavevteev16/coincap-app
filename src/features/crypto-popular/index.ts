@@ -1,1 +1,1 @@
-export { TopCryptos } from "./ui/TopCryptos";
+export { TopCryptos } from "./ui/TopCryptos/TopCryptos";
