@@ -8,9 +8,14 @@ import {
 
 import portfolioReducer from "@/entities/portfolio/model/portfolio.slice";
 
+import { portfolioMiddleware } from "@/features/portfolio-summary/model/localeStorageMiddlware";
+
 const store = configureStore({
   reducer: {
     portfolio: portfolioReducer,
+  },
+  middleware: (getDefaultMiddlware) => {
+    return getDefaultMiddlware().concat(portfolioMiddleware);
   },
 });
 

@@ -24,4 +24,8 @@ export const coincapApi = {
         },
       })
       .then((response) => response.data),
+  getAsset: (id: string): Promise<AssetsResponse> =>
+    coincapClient
+      .get<AssetsResponse>(`/assets/${id}`)
+      .then((response) => response.data),
 };

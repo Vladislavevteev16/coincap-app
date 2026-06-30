@@ -1,13 +1,14 @@
 import { Typography } from "antd";
 
-import { AddToPortfolioModal } from "./AddToPortfolioModal";
+import { AddToPortfolioModal } from "../AddToPortfolioModal";
+
 import { useNavigate } from "react-router-dom";
 
-import { columns } from "../model/columns";
+import { columns } from "../../model/columns";
 
 import * as Styled from "./CryptoTable.style";
 
-import { useCryptoTableLogic } from "../lib/hooks/useCryptoTableLogic";
+import { useCryptoTableLogic } from "../../lib/hooks/useCryptoTableLogic";
 
 const { Title, Text } = Typography;
 
