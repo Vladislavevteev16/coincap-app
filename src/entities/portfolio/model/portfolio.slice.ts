@@ -1,27 +1,17 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-import type { PorfolioState, SavedItems } from "./portfolio.types";
+import type { PortfolioState, SavedItems } from "./portfolio.types";
 
 import type { Asset } from "@/shared/api/coincap.types";
 
-import { STORAGE_KEY } from "@/features/portfolio-summary/model/localeStorageMiddlware";
+import { loadItemsFromStorage } from "@/shared/lib/storage/localStorageMiddleware";
 
-const loadItemsFromStorage = (): SavedItems[] => {
-  try {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : [];
-  } catch {
-    return [];
-  }
-};
-
-const initialState: PorfolioState = {
+const initialState: PortfolioState = {
   items: loadItemsFromStorage(),
   selectedAsset: null,
-  isOpenModalPortfolio: false,
 };
 
-export const porfolioSlice = createSlice({
+export const portfolioSlice = createSlice({
   name: "portfolio",
   initialState,
   reducers: {
@@ -45,17 +35,11 @@ export const porfolioSlice = createSlice({
         });
       }
     },
-    removedAsset: (state, action: PayloadAction<string>) => {
+    removeAsset: (state, action: PayloadAction<string>) => {
       state.items = state.items.filter((item) => item.id !== action.payload);
     },
     setSelectedAsset: (state, action: PayloadAction<Asset>) => {
       state.selectedAsset = action.payload;
-    },
-    modalPortfolioOpened: (state) => {
-      state.isOpenModalPortfolio = true;
-    },
-    modalPortfolioClosed: (state) => {
-      state.isOpenModalPortfolio = false;
     },
     updatePortfolioPrices: (state, action: PayloadAction<Asset[]>) => {
       const assets = action.payload;
@@ -70,7 +54,6 @@ export const porfolioSlice = createSlice({
   selectors: {
     selectAssetList: (state) => state.items,
     selectCurrentAsset: (state) => state.selectedAsset,
-    selectIsOpenPortfolioModal: (state) => state.isOpenModalPortfolio,
     selectTotalPortfolioPrice: (state) =>
       state.items.reduce((acc, i) => acc + i.qty * Number(i.priceUsd), 0),
     selectQtyAssets: (state) => state.items.length,
@@ -107,21 +90,19 @@ export const porfolioSlice = createSlice({
 
 export const {
   addAsset,
-  removedAsset,
+  removeAsset,
   setSelectedAsset,
-  modalPortfolioClosed,
-  modalPortfolioOpened,
   updatePortfolioPrices,
-} = porfolioSlice.actions;
+} = portfolioSlice.actions;
+
 export const {
   selectAssetList,
   selectCurrentAsset,
-  selectIsOpenPortfolioModal,
   selectTotalPortfolioPrice,
   selectQtyAssets,
   selectTotalPurchasePrice,
   selectTotalProfit,
   selectTotalProfitPercent,
-} = porfolioSlice.selectors;
+} = portfolioSlice.selectors;
 
-export default porfolioSlice.reducer;
+export default portfolioSlice.reducer;

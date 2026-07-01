@@ -1,5 +1,7 @@
 import type { ColumnsType } from "antd/es/table";
+
 import { PlusOutlined } from "@ant-design/icons";
+
 import type { Asset } from "@/shared/api/coincap.types";
 
 import styled from "@emotion/styled";

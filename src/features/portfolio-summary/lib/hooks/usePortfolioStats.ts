@@ -6,7 +6,7 @@ import {
   selectTotalProfitPercent,
   selectQtyAssets,
   selectAssetList,
-} from "@/entities/portfolio/model/portfolio.slice";
+} from "@/entities/portfolio/model";
 
 export const usePortfolioStats = () => {
   const totalPrice = useAppSelector(selectTotalPortfolioPrice);

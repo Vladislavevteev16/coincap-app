@@ -1,4 +1,4 @@
-import { ModalPortal } from "@/shared/api/ui/modal-portal";
+import { ModalPortal } from "@/shared/ui/modal-portal";
 
 import { formatPrice } from "../../lib/utils/formatPrice";
 

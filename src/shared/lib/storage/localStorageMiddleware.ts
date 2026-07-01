@@ -1,17 +1,26 @@
 import type { Middleware } from "@reduxjs/toolkit";
 
-import {
-  addAsset,
-  removedAsset,
-  updatePortfolioPrices,
-  //   clearPortfolio,
-} from "@/entities/portfolio/model/portfolio.slice";
-
 import type { SavedItems } from "@/entities/portfolio/model/portfolio.types";
 
 import type { RootState } from "@/app/store";
 
-export const STORAGE_KEY = "portfolio_items";
+export const loadItemsFromStorage = (): SavedItems[] => {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    return saved ? JSON.parse(saved) : [];
+  } catch {
+    return [];
+  }
+};
+
+import {
+  addAsset,
+  removeAsset,
+  updatePortfolioPrices,
+  //   clearPortfolio,
+} from "@/entities/portfolio/model/portfolio.slice";
+
+const STORAGE_KEY = "portfolio_items";
 
 const saveItemsToStorage = (items: SavedItems[]) => {
   try {
@@ -28,12 +37,12 @@ export const portfolioMiddleware: Middleware =
     if (action instanceof Object && "type" in action) {
       const typedAction = action.type as
         | "portfolio/addAsset"
-        | "portfolio/removedAsset"
+        | "portfolio/removeAsset"
         | "portfolio/updatePortfolioPrices";
       if (
         [
           addAsset.type,
-          removedAsset.type,
+          removeAsset.type,
           updatePortfolioPrices.type,
           // clearPortfolio.type,
         ].includes(typedAction)

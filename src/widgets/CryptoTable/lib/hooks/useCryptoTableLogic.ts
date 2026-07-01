@@ -2,7 +2,7 @@ import { useAppDispatch } from "@/app/store";
 
 import { usePagination } from "./usePagination";
 
-import { useModal } from "@/shared/api/lib/hooks/useModal";
+import { useModal } from "@/shared/lib/hooks/useModal";
 
 import { useCryptoTable } from "./useCryptoTable";
 

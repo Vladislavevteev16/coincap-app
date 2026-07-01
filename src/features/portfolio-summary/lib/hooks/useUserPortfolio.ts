@@ -1,26 +1,17 @@
-import { useAppDispatch, useAppSelector } from "@/app/store";
-
-import {
-  modalPortfolioClosed,
-  modalPortfolioOpened,
-  selectIsOpenPortfolioModal,
-} from "@/entities/portfolio/model/portfolio.slice";
+import { useState } from "react";
 
 import { usePortfolioStats } from "./usePortfolioStats";
 
 import { usePortfolioPriceUpdate } from "./usePortfolioPriceUpdate";
 
 export const useUserPortfolio = () => {
-  const dispatch = useAppDispatch();
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   usePortfolioPriceUpdate();
 
-  const handleOpenPortfolioModal = () => dispatch(modalPortfolioOpened());
-  const handleClosePortfolioModal = () => dispatch(modalPortfolioClosed());
+  const handleOpenPortfolioModal = () => setIsOpenModal(true);
+  const handleClosePortfolioModal = () => setIsOpenModal(false);
 
-  const isOpenModal = useAppSelector(selectIsOpenPortfolioModal);
-
- 
   const {
     assetPortfolioItems,
     totalPrice,

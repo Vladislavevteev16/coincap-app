@@ -2,7 +2,7 @@ import { useAppDispatch } from "@/app/store";
 
 import { useEffect } from "react";
 
-import { updatePortfolioPrices } from "@/entities/portfolio/model/portfolio.slice";
+import { updatePortfolioPrices } from "@/entities/portfolio/model";
 
 import { useAllAssets } from "./useAllAssets";
 

@@ -1,7 +1,7 @@
-import { ModalPortal } from "@/shared/api/ui/modal-portal";
+import { ModalPortal } from "@/shared/ui/modal-portal";
 
 import type {
-  PorfolioState,
+  PortfolioState,
   SavedItems,
 } from "@/entities/portfolio/model/portfolio.types";
 
@@ -12,7 +12,7 @@ import { columns } from "../../model/columns";
 type PortfolioModalProps = {
   isOpen: boolean;
   handleCloseModal: () => void;
-  assetList: PorfolioState["items"];
+  assetList: PortfolioState["items"];
   totalPortfolioValue: number;
 };
 

@@ -5,8 +5,7 @@ export type SavedItems = Pick<Asset, "name" | "id" | "priceUsd"> & {
   purchasePriceUsd?: string;
 };
 
-export type PorfolioState = {
+export type PortfolioState = {
   items: SavedItems[];
   selectedAsset: Asset | null;
-  isOpenModalPortfolio: boolean;
 };
