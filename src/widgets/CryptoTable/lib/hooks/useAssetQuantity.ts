@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 
 import { useCurrentAsset } from "../../model/portfolio.modal.selectors";
 
-type ValueType = string | number;
+type ValueType = string | number | null;
 
 export const useAssetQuantity = () => {
   const currentAsset = useCurrentAsset();
@@ -10,10 +10,11 @@ export const useAssetQuantity = () => {
 
   const totalPrice = useMemo(() => {
     if (!currentAsset) return 0;
+
     return quantity * Number(currentAsset.priceUsd || 0);
   }, [quantity, currentAsset]);
 
-  const handleChangeTotalPrice = (value: ValueType | null) => {
+  const handleChangeTotalPrice = (value: ValueType) => {
     if (typeof value === "number") setQuantity(value);
   };
 

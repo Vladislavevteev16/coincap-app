@@ -1,6 +1,6 @@
-import { useAppDispatch } from "@/app/store";
-
 import { useEffect } from "react";
+
+import { useAppDispatch } from "@/app/store";
 
 import { updatePortfolioPrices } from "@/entities/portfolio/model";
 

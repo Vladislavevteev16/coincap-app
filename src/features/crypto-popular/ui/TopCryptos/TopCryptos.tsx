@@ -1,30 +1,63 @@
+import { Alert } from "antd";
+
 import { CryptoRate } from "../CryptoRate";
+
+import { LIMIT } from "../../model/useTopAssets";
 
 import { useTopAssets } from "../../model/useTopAssets";
 
-import {
-  PopularCoinsWrapper,
-  PopularCoinsHeader,
-  CoinList,
-} from "./TopCryptos.style";
+import * as Style from "./TopCryptos.style";
+
+const TopCryptosWrapper: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  return (
+    <Style.PopularCoinsWrapper>
+      <Style.PopularCoinsHeader>
+        Популярные криптовалюты:
+      </Style.PopularCoinsHeader>
+      {children}
+    </Style.PopularCoinsWrapper>
+  );
+};
 
 export const TopCryptos: React.FC = () => {
-  const { data, isLoading, isError } = useTopAssets();
+  const { data = [], isLoading, isError } = useTopAssets();
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return (
+      <TopCryptosWrapper>
+        <Style.CoinList>
+          {Array.from({ length: LIMIT }).map((_, i) => (
+            <Style.SkeletonItem key={i}>
+              <Style.SkeletonPulse />
+            </Style.SkeletonItem>
+          ))}
+        </Style.CoinList>
+      </TopCryptosWrapper>
+    );
   }
 
   if (isError) {
-    return <h1>Ошибка</h1>;
+    return (
+      <TopCryptosWrapper>
+        <Style.ErrorContainer>
+          <Alert
+            title="Ошибка загрузки"
+            type="error"
+            showIcon
+            closable={false}
+          />
+        </Style.ErrorContainer>
+      </TopCryptosWrapper>
+    );
   }
 
   return (
-    <PopularCoinsWrapper>
-      <PopularCoinsHeader>Популярные криптовалюты:</PopularCoinsHeader>
-      <CoinList>
+    <TopCryptosWrapper>
+      <Style.CoinList>
         {data && data.map((item) => <CryptoRate key={item.id} {...item} />)}
-      </CoinList>
-    </PopularCoinsWrapper>
+      </Style.CoinList>
+    </TopCryptosWrapper>
   );
 };

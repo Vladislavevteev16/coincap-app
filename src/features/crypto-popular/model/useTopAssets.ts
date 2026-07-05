@@ -2,7 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 
 import { coincapApi } from "@/shared/api/coincap";
 
-export const useTopAssets = (limit: number = 3) => {
+export const LIMIT = 3;
+
+export const useTopAssets = (limit: number = LIMIT) => {
   return useQuery({
     queryKey: ["topAssets", limit],
     queryFn: () =>

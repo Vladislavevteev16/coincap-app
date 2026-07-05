@@ -1,14 +1,14 @@
-import { ModalPortal } from "@/shared/ui/modal-portal";
+import { ModalWrapper } from "@/shared/ui/ModalWrapper";
+
+import { useAppDispatch } from "@/app/store";
+
+import { addAsset } from "@/entities/portfolio/model/portfolio.slice";
 
 import { formatPrice } from "../../lib/utils/formatPrice";
 
 import { useAssetQuantity } from "../../lib/hooks/useAssetQuantity";
 
 import * as Styled from "./AddToPortfolioModal.style";
-
-import { useAppDispatch } from "@/app/store";
-
-import { addAsset } from "@/entities/portfolio/model/portfolio.slice";
 
 type AddToPortfolioModel = {
   isOpen: boolean;
@@ -24,7 +24,7 @@ export const AddToPortfolioModal: React.FC<AddToPortfolioModel> = ({
   const { currentAsset, quantity, totalPrice, handleChangeTotalPrice } =
     useAssetQuantity();
 
-  const handleAddAssetInPortfolio = () => {
+  const handleAddAssetInPortfolio = (): void => {
     dispatch(
       addAsset({
         id: currentAsset?.id as string,
@@ -32,11 +32,12 @@ export const AddToPortfolioModal: React.FC<AddToPortfolioModel> = ({
         priceUsd: currentAsset?.priceUsd as string,
         qty: quantity,
       }),
+
       handleCloseModal(),
     );
   };
   return (
-    <ModalPortal handleCloseModal={handleCloseModal} isOpen={isOpen}>
+    <ModalWrapper handleCloseModal={handleCloseModal} isOpen={isOpen}>
       <Styled.PortfolioModalContainer>
         <Styled.CloseButton onClick={handleCloseModal} />
 
@@ -66,9 +67,9 @@ export const AddToPortfolioModal: React.FC<AddToPortfolioModel> = ({
 
         <Styled.InputLabel>Введите количество:</Styled.InputLabel>
         <Styled.StyledInputNumber
-          min={0.0001}
+          min={0.01}
           max={1000000}
-          step={0.0001}
+          step={0.01}
           placeholder="0.00"
           precision={2}
           value={quantity}
@@ -94,6 +95,6 @@ export const AddToPortfolioModal: React.FC<AddToPortfolioModel> = ({
           </Styled.AddButton>
         </Styled.ButtonContainer>
       </Styled.PortfolioModalContainer>
-    </ModalPortal>
+    </ModalWrapper>
   );
 };

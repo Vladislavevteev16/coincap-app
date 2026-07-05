@@ -1,37 +1,32 @@
-import { useState } from "react";
+import { useModal } from "@/shared/lib/hooks/useModal";
 
 import { usePortfolioStats } from "./usePortfolioStats";
 
 import { usePortfolioPriceUpdate } from "./usePortfolioPriceUpdate";
 
 export const useUserPortfolio = () => {
-  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const { isOpen, handleCloseModal, handleOpenModal } = useModal();
 
   usePortfolioPriceUpdate();
-
-  const handleOpenPortfolioModal = () => setIsOpenModal(true);
-  const handleClosePortfolioModal = () => setIsOpenModal(false);
 
   const {
     assetPortfolioItems,
     totalPrice,
     totalProfit,
     totalProfitPercent,
-    assetQuantity,
     isPositive,
     formattedProfit,
     formattedPercent,
   } = usePortfolioStats();
 
   return {
-    handleClosePortfolioModal,
-    handleOpenPortfolioModal,
-    isOpenModal,
+    handleCloseModal,
+    handleOpenModal,
+    isOpen,
     assetPortfolioItems,
     totalPrice,
     totalProfit,
     totalProfitPercent,
-    assetQuantity,
     isPositive,
     formattedProfit,
     formattedPercent,

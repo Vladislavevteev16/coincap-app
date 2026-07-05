@@ -2,9 +2,9 @@ import styled from "@emotion/styled";
 
 import { Table } from "antd";
 
-import type { PortfolioTableData } from "./PortfolioModal";
-
 import { CloseOutlined } from "@ant-design/icons";
+
+import type { PortfolioTableData } from "./PortfolioModal";
 
 export const StyledTable = styled(Table<PortfolioTableData>)`
   &&& {
@@ -35,6 +35,18 @@ export const StyledTable = styled(Table<PortfolioTableData>)`
       &::before {
         display: none;
       }
+
+      @media (max-width: 768px) {
+        padding: 8px 8px;
+        font-size: 10px;
+        letter-spacing: 0.2px;
+      }
+
+      @media (max-width: 480px) {
+        padding: 6px 4px;
+        font-size: 9px;
+        letter-spacing: 0;
+      }
     }
 
     .ant-table-tbody > tr > td {
@@ -43,6 +55,16 @@ export const StyledTable = styled(Table<PortfolioTableData>)`
       color: #1a1a1a;
       font-size: 13px;
       transition: background 0.2s;
+
+      @media (max-width: 768px) {
+        padding: 6px 8px;
+        font-size: 12px;
+      }
+
+      @media (max-width: 480px) {
+        padding: 4px 4px;
+        font-size: 10px;
+      }
     }
 
     .ant-table-tbody > tr {
@@ -76,6 +98,11 @@ export const StyledTable = styled(Table<PortfolioTableData>)`
           background: rgba(24, 144, 255, 0.08);
           border-radius: 4px;
         }
+
+        @media (max-width: 480px) {
+          font-size: 10px;
+          padding: 1px 4px;
+        }
       }
     }
 
@@ -90,6 +117,12 @@ export const StyledTable = styled(Table<PortfolioTableData>)`
       justify-content: center;
       padding: 12px 0 4px;
       margin: 0;
+
+      @media (max-width: 480px) {
+        padding: 8px 0 2px;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
 
       .ant-pagination-item {
         border-radius: 6px;
@@ -126,6 +159,16 @@ export const StyledTable = styled(Table<PortfolioTableData>)`
             border-color: #40a9ff;
           }
         }
+
+        @media (max-width: 480px) {
+          min-width: 24px;
+          height: 24px;
+          line-height: 22px;
+
+          a {
+            font-size: 10px;
+          }
+        }
       }
 
       .ant-pagination-prev,
@@ -157,6 +200,15 @@ export const StyledTable = styled(Table<PortfolioTableData>)`
             }
           }
         }
+
+        @media (max-width: 480px) {
+          .ant-pagination-item-link {
+            min-width: 24px;
+            height: 24px;
+            line-height: 22px;
+            font-size: 10px;
+          }
+        }
       }
 
       .ant-pagination-jump-prev,
@@ -165,6 +217,10 @@ export const StyledTable = styled(Table<PortfolioTableData>)`
           .ant-pagination-item-ellipsis {
             color: #8c8c8c;
             font-size: 12px;
+
+            @media (max-width: 480px) {
+              font-size: 10px;
+            }
           }
         }
       }
@@ -176,6 +232,11 @@ export const StyledTable = styled(Table<PortfolioTableData>)`
         text-align: center;
         color: #8c8c8c;
         font-size: 14px;
+
+        @media (max-width: 480px) {
+          padding: 20px 8px;
+          font-size: 12px;
+        }
       }
     }
 
@@ -186,6 +247,14 @@ export const StyledTable = styled(Table<PortfolioTableData>)`
       .ant-table-column-title {
         flex: none;
         font-size: 12px;
+
+        @media (max-width: 768px) {
+          font-size: 10px;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 9px;
+        }
       }
     }
 
@@ -199,6 +268,10 @@ export const StyledTable = styled(Table<PortfolioTableData>)`
 
           &.active {
             color: #1890ff;
+          }
+
+          @media (max-width: 480px) {
+            font-size: 8px;
           }
         }
       }
@@ -232,6 +305,13 @@ export const StyledTable = styled(Table<PortfolioTableData>)`
         }
       }
     }
+
+    @media (max-width: 480px) {
+      .ant-table-thead > tr > th:nth-child(3),
+      .ant-table-tbody > tr > td:nth-child(3) {
+        display: none;
+      }
+    }
   }
 `;
 
@@ -244,12 +324,24 @@ export const CryptoName = styled.div`
     font-size: 11px;
     color: #8c8c8c;
     text-transform: uppercase;
+
+    @media (max-width: 480px) {
+      font-size: 9px;
+    }
   }
 
   .name {
     font-weight: 500;
     color: #1a1a1a;
     font-size: 13px;
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 10px;
+    }
   }
 `;
 
@@ -262,11 +354,27 @@ export const TableWrapper = styled.div`
   backdrop-filter: blur(10px);
   min-height: 600px;
   width: 800px;
-
   overflow: hidden;
   border-radius: 20px;
+
+  @media (max-width: 1024px) {
+    width: 90vw;
+    padding: 30px;
+    min-height: 500px;
+  }
+
   @media (max-width: 768px) {
+    padding: 16px;
+    min-height: 598px;
+    width: 85vw;
+    border-radius: 16px;
+  }
+
+  @media (max-width: 480px) {
     padding: 8px;
+    min-height: 470px;
+    width: 90vw;
+    border-radius: 12px;
   }
 `;
 
@@ -280,12 +388,17 @@ export const TableContainer = styled.div`
     max-width: 100%;
     padding: 0 4px;
   }
+
+  @media (max-width: 480px) {
+    padding: 0 2px;
+  }
 `;
 
 export const TableHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-top: 10px;
   margin-bottom: 16px;
 
   .title {
@@ -293,17 +406,39 @@ export const TableHeader = styled.div`
     font-weight: 600;
     color: #1a1a1a;
     margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 16px;
+    }
   }
 
   .subtitle {
     font-size: 13px;
     color: #8c8c8c;
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 10px;
+    }
   }
 
   @media (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 480px) {
+    margin-bottom: 8px;
+    gap: 4px;
   }
 `;
 
@@ -322,10 +457,31 @@ export const CloseButton = styled(CloseOutlined)`
     background-color: #f5f5f5;
     color: #262626;
   }
+
+  @media (max-width: 768px) {
+    top: 12px;
+    right: 12px;
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    top: 6px;
+    right: 4px;
+    font-size: 14px;
+    padding: 2px;
+  }
 `;
 
 export const TotalValue = styled.span`
   font-size: 18px;
   font-weight: 600;
   color: #1a1a1a;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;

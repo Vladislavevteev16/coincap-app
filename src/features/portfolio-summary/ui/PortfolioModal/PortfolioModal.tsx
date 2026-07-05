@@ -1,13 +1,13 @@
-import { ModalPortal } from "@/shared/ui/modal-portal";
+import { ModalWrapper } from "@/shared/ui/ModalWrapper";
 
 import type {
   PortfolioState,
   SavedItems,
 } from "@/entities/portfolio/model/portfolio.types";
 
-import * as Styled from "./PortfolioModal.style";
-
 import { columns } from "../../model/columns";
+
+import * as Styled from "./PortfolioModal.style";
 
 type PortfolioModalProps = {
   isOpen: boolean;
@@ -37,7 +37,7 @@ export const PortfolioModal: React.FC<PortfolioModalProps> = ({
   });
 
   return (
-    <ModalPortal isOpen={isOpen} handleCloseModal={handleCloseModal}>
+    <ModalWrapper isOpen={isOpen} handleCloseModal={handleCloseModal}>
       <Styled.TableWrapper>
         <Styled.CloseButton onClick={handleCloseModal} />
         <Styled.TableContainer>
@@ -61,7 +61,6 @@ export const PortfolioModal: React.FC<PortfolioModalProps> = ({
             rowKey="id"
             pagination={{
               pageSize: 8,
-              showTotal: (total) => `Всего ${total} активов`,
             }}
             locale={{
               emptyText: "Портфель пуст",
@@ -69,6 +68,6 @@ export const PortfolioModal: React.FC<PortfolioModalProps> = ({
           />
         </Styled.TableContainer>
       </Styled.TableWrapper>
-    </ModalPortal>
+    </ModalWrapper>
   );
 };

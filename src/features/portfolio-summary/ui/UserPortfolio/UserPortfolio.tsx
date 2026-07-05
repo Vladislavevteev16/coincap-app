@@ -9,10 +9,9 @@ import * as Styled from "./UserPortfolio.style";
 export const UserPortfolio = () => {
   const {
     assetPortfolioItems,
-    assetQuantity,
-    handleClosePortfolioModal,
-    handleOpenPortfolioModal,
-    isOpenModal,
+    handleCloseModal,
+    handleOpenModal,
+    isOpen,
     totalPrice,
     formattedPercent,
     formattedProfit,
@@ -21,12 +20,12 @@ export const UserPortfolio = () => {
 
   return (
     <>
-      <Styled.UserPortfolioContainer onClick={handleOpenPortfolioModal}>
+      <Styled.UserPortfolioContainer onClick={handleOpenModal}>
         <Styled.PortfolioIconWrapper>
           <PortfolioIcon />
         </Styled.PortfolioIconWrapper>
         <Styled.PortfolioInfo>
-          <Styled.PortfolioLabel>Portfolio</Styled.PortfolioLabel>
+          <Styled.PortfolioLabel>Портфель</Styled.PortfolioLabel>
           <Styled.PortfolioPrice>
             ${totalPrice.toFixed(2)}
             <Styled.PortfolioPriceUsd>USD</Styled.PortfolioPriceUsd>
@@ -36,13 +35,12 @@ export const UserPortfolio = () => {
             </Styled.ChangePercent>
           </Styled.PortfolioPrice>
         </Styled.PortfolioInfo>
-        <Styled.PortfolioBadge>{assetQuantity}</Styled.PortfolioBadge>
       </Styled.UserPortfolioContainer>
       <PortfolioModal
         totalPortfolioValue={totalPrice}
         assetList={assetPortfolioItems}
-        isOpen={isOpenModal}
-        handleCloseModal={handleClosePortfolioModal}
+        isOpen={isOpen}
+        handleCloseModal={handleCloseModal}
       />
     </>
   );

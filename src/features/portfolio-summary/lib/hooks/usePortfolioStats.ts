@@ -4,7 +4,6 @@ import {
   selectTotalPortfolioPrice,
   selectTotalProfit,
   selectTotalProfitPercent,
-  selectQtyAssets,
   selectAssetList,
 } from "@/entities/portfolio/model";
 
@@ -12,7 +11,6 @@ export const usePortfolioStats = () => {
   const totalPrice = useAppSelector(selectTotalPortfolioPrice);
   const totalProfit = useAppSelector(selectTotalProfit);
   const totalProfitPercent = useAppSelector(selectTotalProfitPercent);
-  const assetQuantity = useAppSelector(selectQtyAssets);
   const assetPortfolioItems = useAppSelector(selectAssetList);
 
   const isPositive = totalProfit >= 0;
@@ -23,7 +21,7 @@ export const usePortfolioStats = () => {
     totalPrice,
     totalProfit,
     totalProfitPercent,
-    assetQuantity,
+
     assetPortfolioItems,
     isPositive,
     formattedProfit,
