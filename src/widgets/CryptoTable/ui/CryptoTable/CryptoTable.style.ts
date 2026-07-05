@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
+
 import { Table } from "antd";
+
 import type { Asset } from "@/shared/api/coincap.types";
 
 export const StyledTable = styled(Table<Asset>)`
@@ -9,11 +11,11 @@ export const StyledTable = styled(Table<Asset>)`
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     width: 100%;
-    height: 100%; // Растягиваем по высоте
+    height: 100%; 
 
     .ant-table {
       border-radius: 12px;
-      height: 100%; // Растягиваем
+      height: 100%; 
     }
 
     .ant-table-container {
@@ -483,7 +485,7 @@ export const TableContainer = styled.div`
   margin: 0 auto;
   box-sizing: border-box;
   padding: 0;
-  height: 100%; // Растягиваем по высоте
+  height: 100%;
 
   @media (max-width: 768px) {
     max-width: 100%;
@@ -532,3 +534,5 @@ export const TableHeader = styled.div`
     }
   }
 `;
+  
+

@@ -1,5 +1,7 @@
 import { UserPortfolio } from "@/features/portfolio-summary";
+
 import { TopCryptos } from "@/features/crypto-popular";
+
 import styled from "@emotion/styled";
 
 const StyledHeader = styled.header`
