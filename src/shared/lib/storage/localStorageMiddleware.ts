@@ -4,6 +4,14 @@ import type { SavedItems } from "@/entities/portfolio/model/portfolio.types";
 
 import type { RootState } from "@/app/store";
 
+const STORAGE_KEY = "portfolio_items";
+
+const enum ActionName {
+  addAsset = "portfolio/addAsset",
+  removeAsset = "portfolio/removeAsset",
+  updatePortfolioPrices = "portfolio/updatePortfolioPrices",
+}
+
 export const loadItemsFromStorage = (): SavedItems[] => {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
@@ -12,15 +20,6 @@ export const loadItemsFromStorage = (): SavedItems[] => {
     return [];
   }
 };
-
-import {
-  addAsset,
-  removeAsset,
-  updatePortfolioPrices,
-  //   clearPortfolio,
-} from "@/entities/portfolio/model/portfolio.slice";
-
-const STORAGE_KEY = "portfolio_items";
 
 const saveItemsToStorage = (items: SavedItems[]) => {
   try {
@@ -35,16 +34,12 @@ export const portfolioMiddleware: Middleware =
     const result = next(action);
 
     if (action instanceof Object && "type" in action) {
-      const typedAction = action.type as
-        | "portfolio/addAsset"
-        | "portfolio/removeAsset"
-        | "portfolio/updatePortfolioPrices";
+      const typedAction = action.type as ActionName;
       if (
         [
-          addAsset.type,
-          removeAsset.type,
-          updatePortfolioPrices.type,
-          // clearPortfolio.type,
+          ActionName.addAsset,
+          ActionName.removeAsset,
+          ActionName.updatePortfolioPrices,
         ].includes(typedAction)
       ) {
         const state = store.getState() as RootState;

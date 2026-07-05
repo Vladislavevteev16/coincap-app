@@ -1,28 +1,5 @@
-import { configureStore } from "@reduxjs/toolkit";
+export type { RootState, AppDispatch } from "./store";
 
-import {
-  useDispatch,
-  useSelector,
-  type TypedUseSelectorHook,
-} from "react-redux";
+export { useAppDispatch, useAppSelector } from "./store";
 
-import portfolioReducer from "@/entities/portfolio/model/portfolio.slice";
-
-import { portfolioMiddleware } from "@/shared/lib/storage/localStorageMiddleware";
-
-const store = configureStore({
-  reducer: {
-    portfolio: portfolioReducer,
-  },
-  middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(portfolioMiddleware);
-  },
-});
-
-export default store;
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+export { default } from "./store";

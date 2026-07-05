@@ -1,6 +1,12 @@
 import { coincapClient } from "./base";
 
-import type { AssetsResponse, GetAssetsParams } from "./coincap.types";
+import type {
+  AssetHistoryResponse,
+  AssetResponse,
+  AssetsResponse,
+  GetAssetHistoryParams,
+  GetAssetsParams,
+} from "./coincap.types";
 
 export const coincapApi = {
   getAssets: (params?: GetAssetsParams): Promise<AssetsResponse> =>
@@ -24,8 +30,22 @@ export const coincapApi = {
         },
       })
       .then((response) => response.data),
-  getAsset: (id: string): Promise<AssetsResponse> =>
+  getAsset: (id: string): Promise<AssetResponse> =>
     coincapClient
-      .get<AssetsResponse>(`/assets/${id}`)
+      .get<AssetResponse>(`/assets/${id}`)
+      .then((response) => response.data),
+
+  getAssetHistory: (
+    id: string,
+    params?: GetAssetHistoryParams,
+  ): Promise<AssetHistoryResponse> =>
+    coincapClient
+      .get<AssetHistoryResponse>(`/assets/${id}/history`, {
+        params: {
+          interval: params?.interval || "d1",
+          start: params?.start,
+          end: params?.end,
+        },
+      })
       .then((response) => response.data),
 };

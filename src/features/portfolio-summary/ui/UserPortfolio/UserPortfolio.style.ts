@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-
 import { Typography } from "antd";
 
 const { Text } = Typography;
@@ -20,6 +19,18 @@ export const UserPortfolioContainer = styled.div`
     box-shadow: 0 4px 16px rgba(24, 144, 255, 0.12);
     transform: translateY(-2px);
   }
+
+  @media (max-width: 768px) {
+    padding: 8px 14px;
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1.8rem 0.75rem;
+    gap: 15px;
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 export const PortfolioIconWrapper = styled.div`
@@ -30,6 +41,11 @@ export const PortfolioIconWrapper = styled.div`
   height: 40px;
   border-radius: 50%;
   flex-shrink: 0;
+
+  @media (max-width: 480px) {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 export const PortfolioInfo = styled.div`
@@ -37,6 +53,10 @@ export const PortfolioInfo = styled.div`
   flex-direction: column;
   gap: 2px;
   flex: 1;
+
+  @media (max-width: 480px) {
+    gap: 1px;
+  }
 `;
 
 export const PortfolioLabel = styled(Text)`
@@ -45,6 +65,10 @@ export const PortfolioLabel = styled(Text)`
     color: #8c8c8c;
     font-weight: 400;
     line-height: 1.2;
+
+    @media (max-width: 480px) {
+      font-size: 10px;
+    }
   }
 `;
 
@@ -54,6 +78,14 @@ export const PortfolioPrice = styled(Text)`
     font-weight: 600;
     color: #1a1a1a;
     letter-spacing: 0.3px;
+
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+    }
   }
 `;
 
@@ -63,6 +95,11 @@ export const PortfolioPriceUsd = styled(Text)`
     color: #8c8c8c;
     margin-left: 6px;
     font-weight: 400;
+
+    @media (max-width: 480px) {
+      font-size: 11px;
+      margin-left: 4px;
+    }
   }
 `;
 
@@ -80,6 +117,13 @@ export const PortfolioBadge = styled.div`
   height: 20px;
   line-height: 1;
   margin-left: auto;
+
+  @media (max-width: 480px) {
+    font-size: 9px;
+    padding: 1px 8px;
+    height: 16px;
+    min-width: 16px;
+  }
 `;
 
 export const ChangePercent = styled(Text)<{ isPositive: boolean }>`
@@ -88,5 +132,10 @@ export const ChangePercent = styled(Text)<{ isPositive: boolean }>`
     font-weight: 500;
     color: ${({ isPositive }) => (isPositive ? "#52c41a" : "#f5222d")};
     margin-left: 8px;
+
+    @media (max-width: 480px) {
+      font-size: 11px;
+      margin-left: 4px;
+    }
   }
 `;

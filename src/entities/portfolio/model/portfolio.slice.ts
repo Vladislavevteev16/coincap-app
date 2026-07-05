@@ -1,10 +1,14 @@
-import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import {
+  createSelector,
+  createSlice,
+  type PayloadAction,
+} from "@reduxjs/toolkit";
 
-import type { PortfolioState, SavedItems } from "./portfolio.types";
+import { loadItemsFromStorage } from "@/shared/lib/storage/localStorageMiddleware";
 
 import type { Asset } from "@/shared/api/coincap.types";
 
-import { loadItemsFromStorage } from "@/shared/lib/storage/localStorageMiddleware";
+import type { PortfolioState, SavedItems } from "./portfolio.types";
 
 const initialState: PortfolioState = {
   items: loadItemsFromStorage(),
@@ -57,36 +61,36 @@ export const portfolioSlice = createSlice({
     selectTotalPortfolioPrice: (state) =>
       state.items.reduce((acc, i) => acc + i.qty * Number(i.priceUsd), 0),
     selectQtyAssets: (state) => state.items.length,
-    selectTotalPurchasePrice: (state) =>
-      state.items.reduce(
-        (acc, i) => acc + i.qty * Number(i.purchasePriceUsd || i.priceUsd),
-        0,
-      ),
-    selectTotalProfit: (state) => {
-      const totalCurrent = state.items.reduce(
-        (acc, i) => acc + i.qty * Number(i.priceUsd),
-        0,
-      );
-      const totalPurchase = state.items.reduce(
-        (acc, i) => acc + i.qty * Number(i.purchasePriceUsd || i.priceUsd),
-        0,
-      );
-      return totalCurrent - totalPurchase;
-    },
-    selectTotalProfitPercent: (state) => {
-      const totalCurrent = state.items.reduce(
-        (acc, i) => acc + i.qty * Number(i.priceUsd),
-        0,
-      );
-      const totalPurchase = state.items.reduce(
-        (acc, i) => acc + i.qty * Number(i.purchasePriceUsd || i.priceUsd),
-        0,
-      );
-      if (totalPurchase === 0) return 0;
-      return ((totalCurrent - totalPurchase) / totalPurchase) * 100;
-    },
   },
 });
+
+const selectItems = (state: { portfolio: PortfolioState }) =>
+  state.portfolio.items;
+
+export const selectTotalPortfolioPrice = createSelector(
+  [selectItems],
+  (items) => items.reduce((acc, i) => acc + i.qty * Number(i.priceUsd), 0),
+);
+
+export const selectTotalPurchasePrice = createSelector([selectItems], (items) =>
+  items.reduce(
+    (acc, i) => acc + i.qty * Number(i.purchasePriceUsd || i.priceUsd),
+    0,
+  ),
+);
+
+export const selectTotalProfit = createSelector(
+  [selectTotalPortfolioPrice, selectTotalPurchasePrice],
+  (totalCurrent, totalPurchase) => totalCurrent - totalPurchase,
+);
+
+export const selectTotalProfitPercent = createSelector(
+  [selectTotalPortfolioPrice, selectTotalPurchasePrice],
+  (totalCurrent, totalPurchase) => {
+    if (totalPurchase === 0) return 0;
+    return ((totalCurrent - totalPurchase) / totalPurchase) * 100;
+  },
+);
 
 export const {
   addAsset,
@@ -95,14 +99,7 @@ export const {
   updatePortfolioPrices,
 } = portfolioSlice.actions;
 
-export const {
-  selectAssetList,
-  selectCurrentAsset,
-  selectTotalPortfolioPrice,
-  selectQtyAssets,
-  selectTotalPurchasePrice,
-  selectTotalProfit,
-  selectTotalProfitPercent,
-} = portfolioSlice.selectors;
+export const { selectAssetList, selectCurrentAsset, selectQtyAssets } =
+  portfolioSlice.selectors;
 
 export default portfolioSlice.reducer;

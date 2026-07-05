@@ -15,5 +15,6 @@ export const useCryptoTable = (page: number) => {
       }),
 
     select: (response) => response.data,
+    placeholderData: (previousData) => previousData,
   });
 };

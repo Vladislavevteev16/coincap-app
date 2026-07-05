@@ -2,21 +2,17 @@ import { Typography } from "antd";
 
 import { AddToPortfolioModal } from "../AddToPortfolioModal";
 
-import { useNavigate } from "react-router-dom";
-
 import { columns } from "../../model/columns";
 
-import * as Styled from "./CryptoTable.style";
-
 import { useCryptoTableLogic } from "../../lib/hooks/useCryptoTableLogic";
+
+import * as Styled from "./CryptoTable.style";
 
 const { Title, Text } = Typography;
 
 const PAGE_SIZE = 10;
 
 export const CryptoTable: React.FC = () => {
-  const navigate = useNavigate();
-
   const {
     data,
     handleCloseModal,
@@ -27,6 +23,7 @@ export const CryptoTable: React.FC = () => {
     offset,
     page,
     setPage,
+    handleRowNavigate,
   } = useCryptoTableLogic();
 
   const columnsWithOffset = columns(offset, handleOpenModal);
@@ -36,34 +33,36 @@ export const CryptoTable: React.FC = () => {
   }
 
   return (
-    <Styled.TableWrapper>
+    <Styled.TableWrapper $isLoading={isLoading}>
       <Styled.TableContainer>
         <Styled.TableHeader>
           <div>
             <Title level={1} className="title">
-              Cryptocurrencies
+              Криптовалюты
             </Title>
-            <Text className="subtitle">Real-time prices and market data</Text>
+            <Text className="subtitle">
+              Цены и рыночные данные в режиме реального времени
+            </Text>
           </div>
         </Styled.TableHeader>
-        <Styled.StyledTable
-          rowKey="id"
-          dataSource={data}
-          loading={isLoading}
-          size="small"
-          columns={columnsWithOffset}
-          bordered={false}
-          pagination={{
-            current: page,
-            pageSize: PAGE_SIZE,
-            showSizeChanger: false,
-            onChange: setPage,
-          }}
-          onRow={(el) => ({
-            onClick: () => navigate(`/assets/${el.id}`),
-          })}
-        />
-      </Styled.TableContainer>{" "}
+        <div style={{ position: "relative" }}>
+          <Styled.StyledTable
+            rowKey="id"
+            dataSource={data}
+            loading={isLoading}
+            size="small"
+            columns={columnsWithOffset}
+            bordered={false}
+            pagination={{
+              current: page,
+              pageSize: PAGE_SIZE,
+              showSizeChanger: false,
+              onChange: setPage,
+            }}
+            onRow={handleRowNavigate}
+          />
+        </div>
+      </Styled.TableContainer>
       <AddToPortfolioModal
         handleCloseModal={handleCloseModal}
         isOpen={isOpenModal}

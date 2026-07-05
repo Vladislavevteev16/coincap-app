@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 
-import s from "./ModalPortal.module.css";
+import * as Styled from "./ModalWrapper.styles";
 
 type ModalPortalProps = {
   isOpen: boolean;
@@ -8,7 +8,7 @@ type ModalPortalProps = {
   children: React.ReactNode;
 };
 
-export const ModalPortal: React.FC<ModalPortalProps> = ({
+export const ModalWrapper: React.FC<ModalPortalProps> = ({
   isOpen,
   children,
   handleCloseModal,
@@ -21,11 +21,9 @@ export const ModalPortal: React.FC<ModalPortalProps> = ({
   if (!isOpen || !modalRoot) return null;
 
   return createPortal(
-    <div className={s.modalOverlay} onClick={handleCloseModal}>
-      <div className={s.modalContainer} onClick={stopPropagation}>
-        {children}
-      </div>
-    </div>,
+    <Styled.Overlay onClick={handleCloseModal}>
+      <Styled.Container onClick={stopPropagation}>{children}</Styled.Container>
+    </Styled.Overlay>,
     modalRoot,
   );
 };
