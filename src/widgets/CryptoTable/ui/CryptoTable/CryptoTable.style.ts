@@ -11,11 +11,11 @@ export const StyledTable = styled(Table<Asset>)`
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     width: 100%;
-    height: 100%; 
+    height: 100%;
 
     .ant-table {
       border-radius: 12px;
-      height: 100%; 
+      height: 100%;
     }
 
     .ant-table-container {
@@ -71,7 +71,7 @@ export const StyledTable = styled(Table<Asset>)`
       }
 
       &:not(:first-child) {
-        padding-left: 20px; 
+        padding-left: 20px;
       }
 
       &::before {
@@ -112,7 +112,6 @@ export const StyledTable = styled(Table<Asset>)`
       color: #1a1a1a;
       font-size: 12px;
       transition: background 0.2s;
-
 
       &:not(:last-child) {
         padding-right: 20px;
@@ -200,11 +199,11 @@ export const StyledTable = styled(Table<Asset>)`
       padding: 12px 0 4px;
       margin: 0;
       flex-wrap: wrap;
-      flex-shrink: 0; 
+      flex-shrink: 0;
 
       .ant-pagination-item {
         border-radius: 6px;
-        border: 1px solid #d9d9d9;
+        border: 1px solid #dbdbdb;
         transition: all 0.2s;
         min-width: 30px;
         height: 30px;
@@ -217,24 +216,14 @@ export const StyledTable = styled(Table<Asset>)`
         }
 
         &:hover {
-          border-color: #1890ff;
-
-          a {
-            color: #1890ff;
-          }
+          border-color: #42ff18;
         }
 
         &.ant-pagination-item-active {
-          background: #1890ff;
-          border-color: #1890ff;
+          background: #10b981;
 
           a {
             color: #ffffff;
-          }
-
-          &:hover {
-            background: #40a9ff;
-            border-color: #40a9ff;
           }
         }
 
@@ -417,12 +406,19 @@ export const TableWrapper = styled.div<{ $isLoading?: boolean }>`
   margin-top: 2rem;
   position: relative;
   min-height: 400px;
-  height: auto; 
-  max-height: 1500px; 
+  height: auto;
+  max-height: 1500px;
   overflow: hidden;
   transition: all 0.3s ease;
   box-sizing: border-box;
 
+  @media (max-width: 480px) {
+    margin-top: 0;
+  }
+
+  @media (min-width: 481px) and (max-width: 1024px) {
+    margin-top: 15rem;
+  }
   &::before {
     content: "";
     position: absolute;
@@ -450,13 +446,12 @@ export const TableWrapper = styled.div<{ $isLoading?: boolean }>`
 
   @media (max-width: 1024px) {
     padding: 12px;
-    max-height: 550px;
+    max-height: none;
   }
 
   @media (max-width: 768px) {
     padding: 8px;
     border-radius: 12px;
-    margin-top: 1.5rem;
     min-height: 350px;
     max-height: 500px;
   }
@@ -464,9 +459,12 @@ export const TableWrapper = styled.div<{ $isLoading?: boolean }>`
   @media (max-width: 480px) {
     padding: 4px;
     border-radius: 8px;
-    margin-top: 1rem;
+    width: 100vw;
     min-height: 300px;
     max-height: 1500px;
+    max-height: none;
+    overflow: visible;
+    height: auto;
   }
 
   @keyframes shimmer {
@@ -534,5 +532,3 @@ export const TableHeader = styled.div`
     }
   }
 `;
-  
-

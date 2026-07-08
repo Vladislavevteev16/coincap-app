@@ -57,11 +57,11 @@ export const StyledInputNumber = styled(InputNumber)`
     }
 
     &:hover {
-      border-color: #1890ff;
+      border-color: #10b981;
     }
 
     &:focus-within {
-      border-color: #1890ff;
+      border-color: #10b981;
       box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
     }
 
@@ -78,13 +78,12 @@ export const BuyButton = styled(Button)`
     border-radius: 8px;
     font-size: 16px;
     font-weight: 500;
-    background: #1890ff;
+    background: #10b981;
     border: none;
     color: #ffffff;
     transition: all 0.3s;
 
     &:hover:not(:disabled) {
-      background: #40a9ff !important;
       color: #ffffff !important;
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);

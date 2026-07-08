@@ -11,17 +11,10 @@ export const CoinItem = styled.li<{ isLoading?: boolean }>`
   gap: 0.5rem;
   padding: 0.4rem 0.8rem;
   background: white;
-  border-radius: 20px;
+  border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
-  cursor: pointer;
   border: 1px solid transparent;
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-color: #e9ecef;
-  }
 
   ${({ isLoading }) =>
     isLoading &&

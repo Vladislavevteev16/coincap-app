@@ -21,7 +21,6 @@ export const usePortfolioStats = () => {
     totalPrice,
     totalProfit,
     totalProfitPercent,
-
     assetPortfolioItems,
     isPositive,
     formattedProfit,

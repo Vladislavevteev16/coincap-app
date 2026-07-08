@@ -2,9 +2,9 @@ import { Alert } from "antd";
 
 import { CryptoRate } from "../CryptoRate";
 
-import { LIMIT } from "../../model/useTopAssets";
+import { LIMIT } from "../../model/hooks/useTopAssets";
 
-import { useTopAssets } from "../../model/useTopAssets";
+import { useTopAssets } from "../../model/hooks/useTopAssets";
 
 import * as Style from "./TopCryptos.style";
 

@@ -20,6 +20,8 @@ const StyledHeader = styled.header`
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   box-sizing: border-box;
 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
   @media (max-width: 768px) {
     padding: 0.5rem 1rem;
     gap: 1rem;

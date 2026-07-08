@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import { ArrowLeftOutlined } from "@ant-design/icons";
 
@@ -15,6 +15,15 @@ import * as Style from "./AssetDetails.styles";
 export const AssetDetails: React.FC = () => {
   const { asset, history, isLoading, hasError, handleBack, handleReload } =
     useAssetDetails();
+
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
+  }, [asset?.id]);
 
   if (hasError) {
     return (
@@ -47,7 +56,7 @@ export const AssetDetails: React.FC = () => {
   }
 
   return (
-    <Style.PageContainer>
+    <Style.PageContainer ref={containerRef}>
       <Style.PageHeader>
         <Style.BackButton icon={<ArrowLeftOutlined />} onClick={handleBack}>
           Назад

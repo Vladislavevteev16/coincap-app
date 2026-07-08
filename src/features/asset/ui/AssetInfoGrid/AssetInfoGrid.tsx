@@ -8,7 +8,7 @@ import {
 
 import type { Asset } from "@/shared/api/coincap.types";
 
-import { AssetInfoCard } from "../AssetInfoCard/AssetInfoCard";
+import { AssetInfoCard } from "../AssetInfoCard";
 
 import * as Style from "./AssetInfoGrid.styles";
 

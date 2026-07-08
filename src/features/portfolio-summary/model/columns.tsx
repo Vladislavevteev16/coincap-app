@@ -1,10 +1,14 @@
 import type { ColumnsType } from "antd/es/table";
 
+import { CloseOutlined } from "@ant-design/icons";
+
 import { CryptoName } from "../ui/PortfolioModal/PortfolioModal.style";
 
 import type { PortfolioTableData } from "../ui/PortfolioModal/PortfolioModal";
 
-export const columns: ColumnsType<PortfolioTableData> = [
+export const getColumns = (
+  handleRemoveAsset: (id: PortfolioTableData["id"]) => void,
+): ColumnsType<PortfolioTableData> => [
   {
     title: "Название",
     dataIndex: "name",
@@ -37,5 +41,26 @@ export const columns: ColumnsType<PortfolioTableData> = [
     key: "total",
     render: (total: number) => `$${total.toFixed(2)}`,
     sorter: (a, b) => a.total - b.total,
+  },
+  {
+    title: "",
+    width: 30,
+    className: "cancelHover",
+    onCell: () => ({
+      style: {
+        backgroundColor: "transparent !important",
+        padding: "4px 0 !important",
+        textAlign: "center",
+      },
+    }),
+    render: (_, asset: PortfolioTableData) => (
+      <CloseOutlined
+        style={{ color: "#10b981", cursor: "pointer" }}
+        onClick={(e) => {
+          e.stopPropagation();
+          handleRemoveAsset(asset.id);
+        }}
+      />
+    ),
   },
 ];

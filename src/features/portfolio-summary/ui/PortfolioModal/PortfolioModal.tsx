@@ -5,13 +5,14 @@ import type {
   SavedItems,
 } from "@/entities/portfolio/model/portfolio.types";
 
-import { columns } from "../../model/columns";
+import { getColumns } from "../../model/columns";
 
 import * as Styled from "./PortfolioModal.style";
 
 type PortfolioModalProps = {
   isOpen: boolean;
   handleCloseModal: () => void;
+  handleDeleteAsset: (id: string) => void;
   assetList: PortfolioState["items"];
   totalPortfolioValue: number;
 };
@@ -25,6 +26,7 @@ export const PortfolioModal: React.FC<PortfolioModalProps> = ({
   handleCloseModal,
   assetList,
   totalPortfolioValue,
+  handleDeleteAsset,
 }) => {
   const dataSource: PortfolioTableData[] = assetList.map((item) => {
     const price = parseFloat(item.priceUsd);
@@ -35,6 +37,8 @@ export const PortfolioModal: React.FC<PortfolioModalProps> = ({
       total: price * qty,
     };
   });
+
+  const columns = getColumns(handleDeleteAsset);
 
   return (
     <ModalWrapper isOpen={isOpen} handleCloseModal={handleCloseModal}>

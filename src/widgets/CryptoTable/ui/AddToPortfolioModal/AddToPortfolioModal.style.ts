@@ -13,6 +13,10 @@ export const PortfolioModalContainer = styled.div`
   border-radius: 16px;
   position: relative;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+  @media (max-width: 480px) {
+    width: 75vw;
+  }
 `;
 
 export const CloseButton = styled(CloseOutlined)`
@@ -58,6 +62,10 @@ export const PriceInfo = styled.div`
   border-top: 1px solid #f0f0f0;
   border-bottom: 1px solid #f0f0f0;
   margin-bottom: 24px;
+
+  @media (max-width: 480px) {
+    margin-bottom: 5px;
+  }
 `;
 
 export const PriceItem = styled.div`
@@ -132,6 +140,10 @@ export const TotalPriceLabel = styled(Text)`
     font-size: 16px;
     font-weight: 500;
     color: #1a1a1a;
+
+    @media (max-width: 480px) {
+      font-size: 15px;
+    }
   }
 `;
 
@@ -139,8 +151,12 @@ export const TotalPriceValue = styled(Text)`
   &&& {
     font-size: 22px;
     font-weight: 700;
-    color: #1890ff;
+    color: #10b981;
     letter-spacing: 0.5px;
+
+    @media (max-width: 480px) {
+      font-size: 16px;
+    }
   }
 `;
 
@@ -178,18 +194,19 @@ export const CancelButton = styled(StyledButton)`
     &:hover {
       background: #e8e8e8 !important;
       color: #262626 !important;
+      border: none;
     }
   }
 `;
 
 export const AddButton = styled(StyledButton)`
   &&& {
-    background: #1890ff;
+    background: #10b981;
     border: none;
     color: #ffffff;
 
     &:hover {
-      background: #40a9ff !important;
+      background: #0b845b !important;
       color: #ffffff !important;
     }
   }

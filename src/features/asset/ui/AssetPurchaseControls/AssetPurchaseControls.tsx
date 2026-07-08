@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import { message } from "antd";
 
 import { useAppDispatch } from "@/app/store";
 
@@ -20,18 +19,17 @@ export const AssetPurchaseControls: React.FC<AssetPurchaseControlsProps> = ({
   asset,
 }) => {
   const [quantity, setQuantity] = useState<number | null>(1);
-  const [isBuying, setIsBuying] = useState(false);
+  const [isBuying, setIsBuying] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
 
   const handleBuy = () => {
     if (!asset || !quantity || quantity <= 0) {
-      message.warning("Введите корректное количество");
-      
       return;
     }
 
     setIsBuying(true);
+
     dispatch(
       addAsset({
         id: asset.id,

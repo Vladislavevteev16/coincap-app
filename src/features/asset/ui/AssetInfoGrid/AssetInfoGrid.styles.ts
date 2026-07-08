@@ -19,7 +19,7 @@ export const InfoLink = styled.a`
   transition: color 0.2s;
 
   &:hover {
-    color: #40a9ff;
+    color: #10b981;
     text-decoration: underline;
   }
 `;
