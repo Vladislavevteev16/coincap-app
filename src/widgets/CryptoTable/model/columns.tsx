@@ -69,7 +69,8 @@ export const columns = (
     className: "cancelHover",
     render: (_, asset: Asset) => (
       <StyledPlusIcon
-        onClick={(e) => {
+        style={{ color: "#10b981" }}
+        onClick={(e: React.MouseEvent<Element>) => {
           e.stopPropagation();
           if (handleOpenModal) {
             handleOpenModal(asset);

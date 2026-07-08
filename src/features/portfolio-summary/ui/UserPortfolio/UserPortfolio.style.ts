@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import { Typography } from "antd";
 
 const { Text } = Typography;
@@ -26,7 +27,7 @@ export const UserPortfolioContainer = styled.div`
   }
 
   @media (max-width: 480px) {
-    padding: 1.8rem 0.75rem;
+    padding: 1.1rem 0.75rem;
     gap: 15px;
     width: 100%;
     justify-content: center;

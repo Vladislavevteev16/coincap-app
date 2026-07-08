@@ -13,6 +13,10 @@ export const useAssetDetails = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
 
+  const handleBack = () => navigate(-1);
+
+  const handleReload = () => window.location.reload();
+
   const {
     data: assetData,
     isLoading: assetLoading,
@@ -31,10 +35,6 @@ export const useAssetDetails = () => {
   const handleBuy = (asset: Asset, amount: number) => {
     message.success(`Добавлено ${amount} ${asset.symbol}`);
   };
-
-  const handleBack = () => navigate(-1);
-
-  const handleReload = () => window.location.reload();
 
   return {
     asset,

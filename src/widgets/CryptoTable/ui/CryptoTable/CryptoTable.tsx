@@ -5,6 +5,9 @@ import { AddToPortfolioModal } from "../AddToPortfolioModal";
 import { columns } from "../../model/columns";
 
 import { useCryptoTableLogic } from "../../lib/hooks/useCryptoTableLogic";
+import { useCheckMobile } from "../../lib/hooks/useCheckMobile";
+
+import { MobileCryptoList } from "../MobileCryptoList/ui/";
 
 import * as Styled from "./CryptoTable.style";
 
@@ -26,6 +29,8 @@ export const CryptoTable: React.FC = () => {
     handleRowNavigate,
   } = useCryptoTableLogic();
 
+  const { isMobile } = useCheckMobile();
+
   const columnsWithOffset = columns(offset, handleOpenModal);
 
   if (isError) {
@@ -45,23 +50,31 @@ export const CryptoTable: React.FC = () => {
             </Text>
           </div>
         </Styled.TableHeader>
-        <div style={{ position: "relative" }}>
-          <Styled.StyledTable
-            rowKey="id"
-            dataSource={data}
-            loading={isLoading}
-            size="small"
-            columns={columnsWithOffset}
-            bordered={false}
-            pagination={{
-              current: page,
-              pageSize: PAGE_SIZE,
-              showSizeChanger: false,
-              onChange: setPage,
-            }}
-            onRow={handleRowNavigate}
+        {isMobile ? (
+          <MobileCryptoList
+            data={data || []}
+            isLoading={isLoading}
+            onAddToPortfolio={handleOpenModal}
           />
-        </div>
+        ) : (
+          <div style={{ position: "relative" }}>
+            <Styled.StyledTable
+              rowKey="id"
+              dataSource={data}
+              loading={isLoading}
+              size="small"
+              columns={columnsWithOffset}
+              bordered={false}
+              pagination={{
+                current: page,
+                pageSize: PAGE_SIZE,
+                showSizeChanger: false,
+                onChange: setPage,
+              }}
+              onRow={handleRowNavigate}
+            />
+          </div>
+        )}
       </Styled.TableContainer>
       <AddToPortfolioModal
         handleCloseModal={handleCloseModal}

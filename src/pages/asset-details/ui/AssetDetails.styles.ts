@@ -7,9 +7,8 @@ const { Title, Text } = Typography;
 export const PageContainer = styled.div`
   min-height: 100vh;
   background: #ffffff;
-  padding: 32px 40px;
+  padding: 1.8rem 3rem;
   width: 100%;
-  max-width: 1400px;
   margin: 0 auto;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -50,7 +49,7 @@ export const BackButton = styled(Button)`
     gap: 8px;
     color: #595959;
     font-size: 14px;
-    border: 1px solid #d9d9d9;
+    border: 1px solid #0e4703;
     border-radius: 8px;
     padding: 8px 16px;
     height: 40px;
@@ -58,9 +57,8 @@ export const BackButton = styled(Button)`
     transition: all 0.2s;
 
     &:hover {
-      color: #1890ff !important;
-      border-color: #1890ff !important;
-      background: #f0f7ff !important;
+      border-color: #2fce0f !important;
+      color: #595959;
     }
 
     @media (max-width: 480px) {
@@ -88,7 +86,7 @@ export const CryptoTitle = styled(Title)`
     flex-wrap: wrap;
 
     .symbol {
-      color: #1890ff;
+      color: #10b981;
     }
 
     .name {

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { ModalWrapper } from "@/shared/ui/ModalWrapper";
 
 import { useAppDispatch } from "@/app/store";
@@ -15,16 +17,21 @@ type AddToPortfolioModel = {
   handleCloseModal: () => void;
 };
 
+const TIMER_DELAY = 1000;
+
 export const AddToPortfolioModal: React.FC<AddToPortfolioModel> = ({
   isOpen,
   handleCloseModal,
 }) => {
   const dispatch = useAppDispatch();
 
+  const [isBuying, setIsBuying] = useState<boolean>(false);
+
   const { currentAsset, quantity, totalPrice, handleChangeTotalPrice } =
     useAssetQuantity();
 
   const handleAddAssetInPortfolio = (): void => {
+    setIsBuying(true);
     dispatch(
       addAsset({
         id: currentAsset?.id as string,
@@ -32,8 +39,10 @@ export const AddToPortfolioModal: React.FC<AddToPortfolioModel> = ({
         priceUsd: currentAsset?.priceUsd as string,
         qty: quantity,
       }),
-
-      handleCloseModal(),
+      setTimeout(() => {
+        setIsBuying(false);
+        handleCloseModal();
+      }, TIMER_DELAY),
     );
   };
   return (
@@ -90,8 +99,11 @@ export const AddToPortfolioModal: React.FC<AddToPortfolioModel> = ({
           <Styled.CancelButton onClick={handleCloseModal}>
             Отмена
           </Styled.CancelButton>
-          <Styled.AddButton onClick={handleAddAssetInPortfolio}>
-            Добавить
+          <Styled.AddButton
+            disabled={isBuying}
+            onClick={handleAddAssetInPortfolio}
+          >
+            {isBuying ? "Добавлено" : "Добавить"}
           </Styled.AddButton>
         </Styled.ButtonContainer>
       </Styled.PortfolioModalContainer>

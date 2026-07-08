@@ -1,6 +1,6 @@
 import { createPortal } from "react-dom";
 
-import * as Styled from "./ModalWrapper.styles";
+import * as Style from "./ModalWrapper.styles";
 
 type ModalPortalProps = {
   isOpen: boolean;
@@ -21,9 +21,9 @@ export const ModalWrapper: React.FC<ModalPortalProps> = ({
   if (!isOpen || !modalRoot) return null;
 
   return createPortal(
-    <Styled.Overlay onClick={handleCloseModal}>
-      <Styled.Container onClick={stopPropagation}>{children}</Styled.Container>
-    </Styled.Overlay>,
+    <Style.Overlay onClick={handleCloseModal}>
+      <Style.Container onClick={stopPropagation}>{children}</Style.Container>
+    </Style.Overlay>,
     modalRoot,
   );
 };

@@ -16,6 +16,7 @@ export const UserPortfolio = () => {
     formattedPercent,
     formattedProfit,
     isPositive,
+    handleDeleteAsset,
   } = useUserPortfolio();
 
   return (
@@ -41,6 +42,7 @@ export const UserPortfolio = () => {
         assetList={assetPortfolioItems}
         isOpen={isOpen}
         handleCloseModal={handleCloseModal}
+        handleDeleteAsset={handleDeleteAsset}
       />
     </>
   );

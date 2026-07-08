@@ -24,13 +24,16 @@ type AssetPriceChartProps = {
   loading: boolean;
 };
 
+const extractDate = (item: AssetHistoryItem) =>
+  new Date(item.time).toISOString().split("T")[0];
+
 export const AssetPriceChart: React.FC<AssetPriceChartProps> = ({
   history,
   loading,
 }) => {
   const chartData = history.map(
     (item: AssetHistoryItem): ChartDataPoint => ({
-      date: new Date(item.time).toISOString().split("T")[0],
+      date: extractDate(item),
       price: parseFloat(item.priceUsd),
     }),
   );
@@ -67,10 +70,10 @@ export const AssetPriceChart: React.FC<AssetPriceChartProps> = ({
             <Line
               type="monotone"
               dataKey="price"
-              stroke="#1890ff"
+              stroke="#10b981"
               strokeWidth={2}
               dot={false}
-              activeDot={{ r: 6, fill: "#1890ff" }}
+              activeDot={{ r: 6, fill: "#10b981" }}
             />
           </LineChart>
         </ResponsiveContainer>

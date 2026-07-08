@@ -1,10 +1,6 @@
-import { Typography } from "antd";
-
 import { formatCurrency } from "@/shared/lib/heplers/format";
 
-import { tooltipStyles } from "./CustomTooltip.styles";
-
-const { Text } = Typography;
+import * as Style from "./CustomTooltip.styles";
 
 type PayloadType = {
   value: number;
@@ -26,14 +22,10 @@ export const CustomTooltip: React.FC<CustomTooltipProps> = ({
 }) => {
   if (active && payload && payload.length && label) {
     return (
-      <div style={tooltipStyles.container}>
-        <Text style={tooltipStyles.label}>
-          {new Date(label).toLocaleDateString("ru-RU")}
-        </Text>
-        <Text style={tooltipStyles.value}>
-          {formatCurrency(payload[0].value)}
-        </Text>
-      </div>
+      <Style.TooltipContainer>
+        <Style.Label>{new Date(label).toLocaleDateString("ru-RU")}</Style.Label>
+        <Style.Value>{formatCurrency(payload[0].value)}</Style.Value>
+      </Style.TooltipContainer>
     );
   }
   return null;

@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+
 import { Typography } from "antd";
 
 const { Title } = Typography;
@@ -25,7 +26,7 @@ export const PopularCoinsWrapper = styled.div`
   }
 
   @media (max-width: 480px) {
-    padding: 1.8rem 0.75rem;
+    padding: 1.1rem 0.75rem;
     gap: 0.3rem;
     min-height: 50px;
   }
