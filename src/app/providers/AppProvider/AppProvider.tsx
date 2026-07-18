@@ -15,7 +15,7 @@ type AppProviderProps = {
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename="/coincap-app">
         <QueryClientProvider client={queryClient}>
           {children}
         </QueryClientProvider>

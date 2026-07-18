@@ -1,11 +1,15 @@
-import "normalize.css";
-
 import { AppRouter } from "./router";
+
+import { ErrorBoundary } from "./providers/ErrorBoundary";
+
+import "normalize.css";
 
 function App() {
   return (
     <>
-      <AppRouter />
+      <ErrorBoundary>
+        <AppRouter />
+      </ErrorBoundary>
     </>
   );
 }
