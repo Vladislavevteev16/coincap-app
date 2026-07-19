@@ -12,7 +12,11 @@ export const coincapClient = axios.create({
 });
 
 coincapClient.interceptors.request.use((request) => {
-  request.headers["Authorization"] = `Bearer ${API_KEY}`;
+  if (API_KEY && (API_KEY.trim() as string) !== "") {
+    request.headers["Authorization"] = `Bearer ${API_KEY}`;
+  }
+
+  console.log(`hasKey${!!request.headers["Authorization"]}`);
 
   return request;
 });
